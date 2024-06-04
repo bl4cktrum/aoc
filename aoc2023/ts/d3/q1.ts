@@ -38,7 +38,7 @@ function isNum(char: string): boolean {
 }
 
 function isSymbol(char: string): boolean {
-    return char != '' && !char.match(/[.0-9|\r]/)
+    return char != '' && !char.match(/[.0-9\r]/)
 }
 
 function hasAdjacentSymbol(li: number, ci: number) {
