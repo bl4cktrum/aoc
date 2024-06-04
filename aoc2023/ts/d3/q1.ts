@@ -25,7 +25,7 @@ for (let li = 0; li < lines.length; li++) {
                 if (hasAdjacentSymbol(li, numStartIdx + i))
                     hasAdjacent = true
             }
-            if (hasAdjacent){
+            if (hasAdjacent) {
                 total += parseInt(lines[li].slice(numStartIdx, numEndIdx + 1))
             }
         }
@@ -42,13 +42,7 @@ function isSymbol(char: string): boolean {
 }
 
 function hasAdjacentSymbol(li: number, ci: number) {
-    let hasAdjacent = false
-    around.forEach(pos => {
-        try {
-            if (lines[li + pos[0]][ci + pos[1]]?.length == 1 && isSymbol(lines[li + pos[0]][ci + pos[1]]))
-                hasAdjacent = true
-        } catch (e) {
-        }
-    })
-    return hasAdjacent
+    return around.reduce((acc, [y, x]) => {
+        return acc || ((lines[li + y] && lines[li + y][ci + x]) ? isSymbol(lines[li + y][ci + x]) : false)
+    }, false)
 }
